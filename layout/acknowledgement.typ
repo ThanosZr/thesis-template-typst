@@ -8,18 +8,18 @@
   )
 
   set text(
-    font: fonts.body, 
-    size: 12pt, 
-    lang: "el"
+    font: fonts.body,
+    size: 12pt,
+    lang: "el",
   )
 
   set par(
-    leading: 1em, 
-    justify: true
+    leading: 1em,
+    justify: true,
   )
-  
+
   // --- Acknowledgements ---
-  align(left, text(font: fonts.sans, 2em, weight: 700,"Ευχαριστίες"))
+  align(left, text(font: fonts.sans, 2em, weight: 700, "Acknowledgements"))
   v(15mm)
 
   body

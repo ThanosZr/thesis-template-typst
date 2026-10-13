@@ -14,9 +14,7 @@
   committee: (),
   city: "Athens",
 ) = {
-  // Quality checks
-  assert(degree in ("Bachelor", "Master"), message: "The degree must be either 'Bachelor' or 'Master'")
-
+  
   set page(
     margin: (left: 25mm, right: 25mm, top: 20mm, bottom: 25mm),
     numbering: none,
