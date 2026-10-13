@@ -83,7 +83,7 @@
   // Committee approval
   align(left, text(
     size: 10pt,
-    tr(lang, "approved") + underline(submissionDate.display("[day] [month] [year]")),
+    tr(lang, "approved") + underline(day-month-year(submissionDate, lang)),
   ))
 
   v(8mm)
@@ -114,6 +114,5 @@
 
   v(15mm)
 
-  let cityDateStr = if submissionDate != none { city + ", " + submissionDate.display("[month repr:long] [year]") } else { city + ", Month Year" }
-  align(center, text(size: 11pt, cityDateStr))
+  align(center, text(size: 11pt, city + ", " + month-year(submissionDate, lang)))
 }

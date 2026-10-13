@@ -77,6 +77,5 @@
 
   v(25mm)
 
-  let dateStr = if submissionDate != none { submissionDate.display("[month repr:long] [year]") } else { "Month Year" }
-  align(center, text(size: 11pt, city + ", " + dateStr))
+  align(center, text(size: 11pt, city + ", " + month-year(submissionDate, lang)))
 }

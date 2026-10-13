@@ -55,3 +55,23 @@
 )
 
 #let tr(lang, key) = strings.at(lang, default: strings.en).at(key)
+
+// Typst prints month names only in English, so the Greek ones are listed here.
+#let months-el = ("Ιανουάριος", "Φεβρουάριος", "Μάρτιος", "Απρίλιος", "Μάιος", "Ιούνιος",
+  "Ιούλιος", "Αύγουστος", "Σεπτέμβριος", "Οκτώβριος", "Νοέμβριος", "Δεκέμβριος")
+#let months-el-gen = ("Ιανουαρίου", "Φεβρουαρίου", "Μαρτίου", "Απριλίου", "Μαΐου", "Ιουνίου",
+  "Ιουλίου", "Αυγούστου", "Σεπτεμβρίου", "Οκτωβρίου", "Νοεμβρίου", "Δεκεμβρίου")
+
+// "January 2025" / "Ιανουάριος 2025"
+#let month-year(date, lang) = {
+  if date == none { return if lang == "el" { "Μήνας Έτος" } else { "Month Year" } }
+  if lang == "el" { months-el.at(date.month() - 1) + " " + str(date.year()) }
+  else { date.display("[month repr:long] [year]") }
+}
+
+// "01 01 2025" / "1η Ιανουαρίου 2025" (as in the template of the School library)
+#let day-month-year(date, lang) = {
+  if date == none { return "" }
+  if lang == "el" { str(date.day()) + "η " + months-el-gen.at(date.month() - 1) + " " + str(date.year()) }
+  else { date.display("[day] [month] [year]") }
+}
