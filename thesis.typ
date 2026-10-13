@@ -1,7 +1,7 @@
 #import "/layout/thesis_template.typ": *
 #import "/metadata.typ": *
 
-#set document(title: titleEnglish, author: author)
+#set document(title: if language == "el" { titleGreek } else { titleEnglish }, author: author)
 
 #show: thesis.with(
   title: titleEnglish,

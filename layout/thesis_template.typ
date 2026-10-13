@@ -31,8 +31,11 @@
   lang: "en",
   body,
 ) = {
+  // The cover and the title page show the title in the language of the thesis
+  let mainTitle = if lang == "el" and titleGreek != "" { titleGreek } else { title }
+
   cover(
-    title: title,
+    title: mainTitle,
     degree: degree,
     program: program,
     author: author,
@@ -40,6 +43,7 @@
     supervisors: supervisors,
     submissionDate: submissionDate,
     city: city,
+    lang: lang,
   )
 
   pagebreak()
@@ -50,7 +54,7 @@
   pagebreak()
 
   titlepage(
-    title: title,
+    title: mainTitle,
     titleGreek: titleGreek,
     degree: degree,
     program: program,
@@ -62,6 +66,7 @@
     division: division,
     committee: committee,
     city: city,
+    lang: lang,
   )
 
   print_page_break(print: is_print, to: "even")
@@ -70,18 +75,25 @@
     title: title,
     degree: degree,
     author: author,
-    submissionDate: submissionDate
+    submissionDate: submissionDate,
+    lang: lang,
   )
   transparency_ai_tools_layout(transparency_ai_tools)
 
   print_page_break(print: is_print)
   
-  acknowledgement_layout(acknowledgement)
+  acknowledgement_layout(acknowledgement, title: tr(lang, "acknowledgement"))
 
   print_page_break(print: is_print)
 
-  abstract(lang: "en")[#abstract_en]
-  abstract(lang: "el")[#abstract_el]
+  // The abstract in the language of the thesis comes first
+  if lang == "el" {
+    abstract(lang: "el")[#abstract_el]
+    abstract(lang: "en")[#abstract_en]
+  } else {
+    abstract(lang: "en")[#abstract_en]
+    abstract(lang: "el")[#abstract_el]
+  }
 
   set page(
     margin: (left: 30mm, right: 30mm, top: 40mm, bottom: 40mm),
