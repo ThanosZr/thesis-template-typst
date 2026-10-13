@@ -20,6 +20,7 @@
   division: division,
   committee: committee,
   city: location,
+  lang: language,
 )
 
 #include "/content/introduction.typ"
